@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+	<style type="text/css">
+		h1{
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<h1>
+		My To-do List
+	</h1>
+	<input type="checkbox" name="0" id="i1">Go to fineartamerica
+	<br>
+	<input type="checkbox" name="0" id="i2">Make an account
+	<br>
+	<input type="checkbox" name="0" id="i3">Vote for pooshs image
+	<br>
+	<p id="blank">
+		
+	</p>
+	<script type="text/javascript">
+	
+	</script>
+	<hr>
+
+Checkbox: <input type="checkbox" id="myCheck">
+
+<p>Click the "Try it" button to find out whether the checkbox is checked, or not.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+<p id="demo1"></p>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myCheck").checked;
+  document.getElementById("demo").innerHTML = x;
+  if (x == true) {
+  	  document.getElementById("demo1").innerHTML = " ";
+
+  }
+}
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% layout %}
+
+ {% theme_include 'partials/header' %}
+
+   <main class="ajax-hide">
+
+     <div class="container listing-asset-container">
+
+       {% theme_include 'partials/page_title', pageContext: page %}
+
+       <!-- Column Sizes -->
+       {% capture columns %}{% if theme.listing_thumbnail_size == 'Extra Large' %}{{ 'two-columns' }}{% elsif theme.listing_thumbnail_size == 'Large' %}{{ 'three-columns' }}{% elsif theme.listing_thumbnail_size == 'Medium' %}{{ 'four-columns' }}{% elsif theme.listing_thumbnail_size == 'Small' %}{{ 'five-columns' }}{% elsif theme.listing_thumbnail_size == 'Auto' %}{{ 'auto-width' }}{% endif %}{% endcapture %}
+
+       <!-- ASSETS : START -->
+       {% if theme.listing_thumbnail_style == 'Masonry' %}
+         <div class="asset-container">
+           <div class="masonry {{ columns }}">
+             {% for asset in page.assets %}
+               <div class="page-asset asset masonry-item">
+                 <a class="item-link" href="{{ asset.link_url }}"{% if asset.open_in_new_window %} target="_blank"{% endif %}>
+                   <div class="image-wrap">
+                     <canvas class="image-placeholder" width="{{ asset.image_dimensions_550x0[0] }}" height="{{ asset.image_dimensions_550x0[1] }}" style="background-color:{{ asset.dominant_color }};"></canvas>
+                     <img data-srcset="{{ asset | srcset: 'width' }}" data-src="{{asset.image_url_0x400}}" class="lazyload" data-sizes="auto" />
+                   </div>
+                   {% if asset.copy %}
+                     <div class="item-label"><p>{{ asset.copy }}</p></div>
+                   {% endif %}
+                 </a>
+               </div>
+             {% endfor %}
+           </div>
+         </div>
+       {% else %}
+       <div class="asset-container">
+         <div class="grid {{ columns }}">
+           {% for asset in page.assets %}
+             <div class="page-asset asset grid-item">
+               <a class="item-link" href="{{ asset.link_url }}"{% if asset.open_in_new_window %} target="_blank"{% endif %}>
+                 <div class="image-wrap {% if theme.listing_thumbnail_style == 'Original Ratio' %}{{ 'original' }}{% endif %}">
